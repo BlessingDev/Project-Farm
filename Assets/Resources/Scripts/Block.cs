@@ -13,16 +13,26 @@ public class Block : MonoBehaviour
 
     public void Plant()
     {
-        GameObject obj = PlantManager.GetInstance.Plant("Plant");
-        if(obj != null)
+        if(mObjectOn == null)
         {
-            obj.transform.position = transform.position;
+            GameObject obj = PlantManager.GetInstance.Plant("Plant");
+            if (obj != null)
+            {
+                obj.transform.position = transform.position;
 
-            obj.transform.localPosition = new Vector3(obj.transform.localPosition.x, obj.transform.localPosition.y + 0.5f, obj.transform.localPosition.z);
+                obj.transform.localPosition = new Vector3(obj.transform.localPosition.x, obj.transform.localPosition.y + 0.5f, obj.transform.localPosition.z);
+
+                mObjectOn = obj;
+            }
+            else
+            {
+                Debug.LogWarning("obj is null");
+            }
         }
-        else
-        {
-            Debug.LogWarning("obj is null");
-        }
+    }
+
+    public void Destroy()
+    {
+
     }
 }

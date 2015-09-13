@@ -22,7 +22,8 @@ public class CircularButton : MonoBehaviour
 
         for (int i = 0; i < mTweenPoses.Length; i++)
         {
-            mTweenPoses[i].gameObject.SetActive(false);
+            if(!mTweenPoses[i].enabled)
+                mTweenPoses[i].gameObject.SetActive(false);
         }
 	}
 	
@@ -38,12 +39,17 @@ public class CircularButton : MonoBehaviour
         }
     }
 
-    public void Disable()
+    private void Disable()
     {
         abled = false;
         for (int i = 0; i < mTweenPoses.Length; i++)
         {
             mTweenPoses[i].gameObject.SetActive(false);
         }
+    }
+
+    public void invokeDiable()
+    {
+        Invoke("Disable", 0.1f);
     }
 }

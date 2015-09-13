@@ -30,8 +30,15 @@ public class Tween : MonoBehaviour
 
     public virtual void ResetToBeginning()
     {
+        Debug.Log("reset");
         enabled = true;
-        StartCoroutine(updateTime());
         curTime = 0.0f;
+        StartCoroutine(updateTime());
+    }
+
+    void OnDisable()
+    {
+        Debug.Log("disabled");
+        StopAllCoroutines();
     }
 }

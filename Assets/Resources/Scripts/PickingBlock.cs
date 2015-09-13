@@ -54,10 +54,6 @@ public class PickingBlock : MonoBehaviour
                     mPicking = false;
                 }
             }
-            else
-            {
-                mPicking = false;
-            }
 
             yield return null;
         }
