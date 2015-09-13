@@ -31,12 +31,12 @@ public class PickingBlock : MonoBehaviour
         StartCoroutine("CoUpdate");
     }
 
-    void OnDisable()
+    public void OnDisable()
     {
         StopAllCoroutines();
     }
 
-    void OnEnable()
+    public void OnEnable()
     {
         Start();
     }

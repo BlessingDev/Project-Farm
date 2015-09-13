@@ -46,8 +46,8 @@ public class PlantManager : MonoBehaviour
     public void PlantDestroyed(Plant plant)
     {
         Debug.Log("plant " + plant + " Destroyed");
+        Destroy(plant.gameObject);
         mPlants.Remove(plant);
-        Destroy(plant);
     }
 
     public void PlantRandomDestroy()

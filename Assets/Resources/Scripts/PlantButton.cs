@@ -6,19 +6,18 @@ public class PlantButton : MonoBehaviour
     public PickingBlock mPicker = null;
     public CircularButton mButton = null;
 
-    public void OnPointerEnter()
+    public virtual void OnPointerEnter()
     {
         mPicker.enabled = false;
     }
 
-    public void OnClick()
+    public virtual void OnClick()
     {
-        Debug.Log("clicke");
         mPicker.enabled = false;
         mPicker._selectedObject.GetComponent<Block>().Plant();
     }
 
-    public void OnRelease()
+    public virtual void OnRelease()
     {
         Debug.Log("release");
         mPicker.enabled = true;
