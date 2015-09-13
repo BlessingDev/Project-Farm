@@ -3,18 +3,38 @@ using System.Collections;
 
 public class Cloud : MonoBehaviour
 {
-    private TweenPosition tweenPos;
+    TweenValue mTweenVal;
+    private ParticleSystem mParticleSystem = null;
 
-	// Use this for initialization
-	void Start ()
+    void Start()
     {
-        tweenPos = GetComponent<TweenPosition>();
-	}
-	
+        mTweenVal = GetComponent<TweenValue>();
+        mParticleSystem = GetComponent<ParticleSystem>();
+    }
+
 	// Update is called once per frame
-	void Update ()
+	public void destroyed(float destroyTime)
     {
-        if (tweenPos.isFinished)
-            Destroy(this.gameObject);
-	}
+        mTweenVal.duration = destroyTime;
+        mTweenVal.start = mParticleSystem.emissionRate;
+        mTweenVal.end = 0f;
+        mTweenVal.ResetToBeginning();
+
+        StartCoroutine(updateDestruction());
+    }
+
+    IEnumerator updateDestruction()
+    {
+        while(true)
+        {
+            mParticleSystem.emissionRate = (int)mTweenVal.curValue;
+
+            if (mTweenVal.curValue < 0.1f)
+            {
+                Destroy(this.gameObject);
+            }
+
+            yield return null;
+        }
+    }
 }

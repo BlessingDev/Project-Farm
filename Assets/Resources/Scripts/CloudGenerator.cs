@@ -76,4 +76,10 @@ public class CloudGenerator : MonoBehaviour
             yield return null;
         }
     }
+
+    public void removeAndDestroy(GameObject obj)
+    {
+        clouds.Remove(obj);
+        obj.GetComponent<Cloud>().destroyed(0.5f);
+    }
 }

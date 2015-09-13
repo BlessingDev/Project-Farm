@@ -3,6 +3,8 @@ using System.Collections;
 
 public class CloudMover : MonoBehaviour
 {
+    public CloudGenerator mGenerator = null;
+
     private PickingBlock mPicker = null;
 
 	// Use this for initialization
@@ -20,12 +22,8 @@ public class CloudMover : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && mPicker.isPicking)
             {
                 Debug.Log("picked!");
-                Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-                if (mPicker._selectedObject == null)
-                    Debug.LogWarning("object null!");
-                else
-                    mPicker._selectedObject.transform.position = mouseWorldPos;
+                mGenerator.removeAndDestroy(mPicker._selectedObject);
             }
 
             yield return null;
