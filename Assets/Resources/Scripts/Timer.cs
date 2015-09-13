@@ -46,6 +46,8 @@ public class Timer : MonoBehaviour
         _elasedTime = PlayerPrefs.GetFloat("timerelasedtime", 0f);
         _passedYears = PlayerPrefs.GetInt("passedYears", 0);
         ///////////////////////////////////////////////////////////////
+
+        StartTimer();
     }
 
     public void StartTimer()
@@ -154,14 +156,25 @@ public class Timer : MonoBehaviour
 
             for(int idx = 0; idx < _seasonData.Length; ++idx)
             {
-                if(_seasonData[idx]._minRange <= progressOfYear &&
-                    _seasonData[idx]._maxRange > progressOfYear)
+                if(_seasonData[idx]._minRange <= _seasonData[idx]._maxRange)
                 {
-                    return _seasonData[idx]._seasonType;
+                    if (_seasonData[idx]._minRange <= progressOfYear &&
+                    _seasonData[idx]._maxRange > progressOfYear)
+                    {
+                        return _seasonData[idx]._seasonType;
+                    }
+                }
+                else
+                {
+                    if(_seasonData[idx]._minRange >= progressOfYear ||
+                        _seasonData[idx]._maxRange <= progressOfYear)
+                    {
+                        return _seasonData[idx]._seasonType;
+                    }
                 }
             }
 
-            return Season.Spring;
+            return Season.Summer;
         }
     }
 

@@ -8,10 +8,14 @@ public class CloudGenerator : MonoBehaviour
     public GameObject rotatingObject = null;
     public float topY = 0f;
     public float bottomY = 0f;
+    public float frontZ = 0f;
+    public float backZ = 0f;
     public float spawnTurm = 1.0f;
     public float turmError = 0.1f;
     public float speedPerFrame = 0.01f;
 
+    private float xLimit = 18f;
+    private float xStart = -10f;
     private List<GameObject> clouds = new List<GameObject>();
 
 	// Use this for initialization
@@ -34,8 +38,9 @@ public class CloudGenerator : MonoBehaviour
         cloud.transform.SetParent(rotatingObject.transform);
 
         float randomY = Random.Range(bottomY, topY);
+        float randomZ = Random.Range(backZ, frontZ);
 
-        cloud.transform.localPosition = new Vector3(cloud.transform.localPosition.x, randomY);
+        cloud.transform.localPosition = new Vector3(xStart, randomY, randomZ);
 
         clouds.Add(cloud);
 
@@ -44,15 +49,31 @@ public class CloudGenerator : MonoBehaviour
 
     IEnumerator cloudUpdate()
     {
-        foreach(var iter in clouds)
+        while(true)
         {
-            Vector3 chLocal = iter.transform.localPosition;
+            List<GameObject> desRes = new List<GameObject>();
 
-            chLocal.x += speedPerFrame;
+            foreach (var iter in clouds)
+            {
+                Vector3 chLocal = iter.transform.localPosition;
 
-            iter.transform.localPosition = chLocal;
+                chLocal.x += speedPerFrame;
+
+                iter.transform.localPosition = chLocal;
+
+                if (iter.transform.localPosition.x > xLimit)
+                {
+                    desRes.Add(iter);
+                }
+            }
+
+            foreach(var iter in desRes)
+            {
+                Destroy(iter);
+                clouds.Remove(iter);
+            }
+
+            yield return null;
         }
-
-        yield return null;
     }
 }
