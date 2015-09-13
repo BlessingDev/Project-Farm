@@ -5,7 +5,6 @@ public class Block : MonoBehaviour
 {
     //위에 놓여 있는 오브젝트
     public GameObject mObjectOn = null;
-    public GameObject mFireEffect = null;
 
     void Start()
     {
@@ -42,10 +41,11 @@ public class Block : MonoBehaviour
             {
                 PlantManager.GetInstance.PlantDestroyed(iter);
 
-                if (mFireEffect != null)
+                if (collector.mFireEffect != null)
                 {
-                    GameObject obj = Instantiate(mFireEffect) as GameObject;
+                    GameObject obj = Instantiate(collector.mFireEffect) as GameObject;
                     obj.transform.position = iter.transform.position;
+                    obj.transform.localPosition = new Vector3(obj.transform.localPosition.x, obj.transform.localPosition.y + 0.5f, obj.transform.localPosition.z);
                 }
                 else
                 {

@@ -52,12 +52,25 @@ public class PickingBlock : MonoBehaviour
 
                 int layerMask = (1 << LayerMask.NameToLayer(layerName));
 
+                float disturbDis = Mathf.Infinity;
+                float hitDis = 0f;
+                
+                if(Physics.Raycast(ray, out hit, Mathf.Infinity, (1 << LayerMask.NameToLayer("Disturb"))))
+                {
+                    disturbDis = Vector3.Distance(Camera.main.transform.position, hit.point);
+                }
+
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) 
                 {
-                    // Work
-                    _selectedObject = hit.collider.gameObject;
-                    posError = - _selectedObject.transform.position + Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    mPicking = true;
+                    hitDis = Vector3.Distance(Camera.main.transform.position, hit.point);
+
+                    if(hitDis <= disturbDis)
+                    {
+                        // Work
+                        _selectedObject = hit.collider.gameObject;
+                        posError = -_selectedObject.transform.position + Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                        mPicking = true;
+                    }
                 }
                 else
                 {
