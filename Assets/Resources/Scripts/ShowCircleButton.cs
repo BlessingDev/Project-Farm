@@ -18,18 +18,22 @@ public class ShowCircleButton : MonoBehaviour
     {
         while(true)
         {
-            if(mPicker.isPicking && mPicker._selectedObject != mBefPicked)
+            if(mButtons.isAbled)
             {
                 mBefPicked = mPicker._selectedObject;
                 Vector3 screenPos = Camera.main.WorldToScreenPoint(mBefPicked.transform.position);
 
                 mButtons.transform.position = screenPos;
+            }
+
+            if(mPicker.isPicking && mPicker._selectedObject != mBefPicked)
+            {
                 mButtons.OnTouch();
             }
 
             if(Input.GetMouseButtonDown(0) && !mPicker.isPicking)
             {
-                //mButtons.Disable();
+                Invoke("mButtons.Disable", 0.1f);
             }
             yield return null;
         }

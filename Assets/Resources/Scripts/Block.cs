@@ -10,4 +10,19 @@ public class Block : MonoBehaviour
     {
 
     }
+
+    public void Plant()
+    {
+        GameObject obj = PlantManager.GetInstance.Plant("Plant");
+        if(obj != null)
+        {
+            obj.transform.position = transform.position;
+
+            obj.transform.localPosition = new Vector3(obj.transform.localPosition.x, obj.transform.localPosition.y + 0.5f, obj.transform.localPosition.z);
+        }
+        else
+        {
+            Debug.LogWarning("obj is null");
+        }
+    }
 }

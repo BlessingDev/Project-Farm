@@ -14,8 +14,8 @@ public class CloudGenerator : MonoBehaviour
     public float turmError = 0.1f;
     public float speedPerFrame = 0.01f;
 
-    private float xLimit = 18f;
-    private float xStart = -10f;
+    private float xLimit = 15f;
+    private float xStart = -8f;
     private List<GameObject> clouds = new List<GameObject>();
 
 	// Use this for initialization

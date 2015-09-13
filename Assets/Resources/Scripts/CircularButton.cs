@@ -5,6 +5,15 @@ using System.Collections;
 public class CircularButton : MonoBehaviour
 {
     private TweenPosition[] mTweenPoses = null;
+    private bool abled = false;
+
+    public bool isAbled
+    {
+        get
+        {
+            return abled;
+        }
+    }
 
 	// Use this for initialization
 	void Start ()
@@ -19,6 +28,7 @@ public class CircularButton : MonoBehaviour
 	
     public void OnTouch()
     {
+        abled = true;
         for(int i = 0; i < mTweenPoses.Length; i++)
         {
             if(!mTweenPoses[i].isActiveAndEnabled)
@@ -30,6 +40,7 @@ public class CircularButton : MonoBehaviour
 
     public void Disable()
     {
+        abled = false;
         for (int i = 0; i < mTweenPoses.Length; i++)
         {
             mTweenPoses[i].gameObject.SetActive(false);
