@@ -4,7 +4,7 @@ using System.Collections;
 public class PickingBlock : MonoBehaviour
 {
     // Test Code
-    public string _selectedObject = "";
+    public GameObject _selectedObject = null;
 
     void Start()
     {
@@ -25,7 +25,7 @@ public class PickingBlock : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) 
                 {
                     // Work
-                    _selectedObject = hit.collider.gameObject.name;
+                    _selectedObject = hit.collider.gameObject;
                 }
 
             }
