@@ -31,6 +31,16 @@ public class PickingBlock : MonoBehaviour
         StartCoroutine("CoUpdate");
     }
 
+    void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
+    void OnEnable()
+    {
+        Start();
+    }
+
     IEnumerator CoUpdate()
     {
         while(true)
