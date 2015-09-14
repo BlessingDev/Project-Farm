@@ -4,6 +4,7 @@ using System.Collections;
 
 public class SeasonText : MonoBehaviour
 {
+    public ParticleSystem _snowParticle = null;
     private Timer timer = null;
     private Text text = null;
 
@@ -37,6 +38,10 @@ public class SeasonText : MonoBehaviour
 
                     break;
                 case Season.Winter:
+                    if(_snowParticle != null)
+                    {
+                        //@TODO add snow particle enable
+                    }
                     text.text = "Winter";
 
                     break;
