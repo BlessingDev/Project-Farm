@@ -26,7 +26,7 @@ public class ShowCircleButton : MonoBehaviour
                 mButtons.transform.position = screenPos;
             }
 
-            if(mPicker.isPicking && mPicker._selectedObject != mBefPicked)
+            if(mPicker.isPicking && mPicker._selectedObject != mBefPicked && mPicker._selectedObject != null)
             {
                 Debug.Log("mPicker is picked");
                 mBefPicked = mPicker._selectedObject;
