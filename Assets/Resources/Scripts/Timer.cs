@@ -6,7 +6,8 @@ public enum Season
     Spring,
     Summer,
     Fall,
-    Winter
+    Winter,
+    Unknown
 }
 
 [System.Serializable]

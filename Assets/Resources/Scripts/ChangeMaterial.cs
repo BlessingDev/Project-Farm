@@ -3,16 +3,11 @@ using System.Collections;
 
 public class ChangeMaterial : MonoBehaviour {
     public MeshRenderer _targetObject;
-    Material _originMat;
+    public Material _originMat;
     [SerializeField]
     Material _changeMat;
 
     bool _isChanged = false;
-
-    void Start()
-    {
-        _originMat = _targetObject.material;
-    }
 
     public void Change()
     {
@@ -21,6 +16,7 @@ public class ChangeMaterial : MonoBehaviour {
         switch (_isChanged)
         {
             case false:
+                _originMat = _targetObject.material;
                 _targetObject.material = _changeMat;
                 break;
 
