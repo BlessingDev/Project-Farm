@@ -10,6 +10,7 @@ public class Plant : MonoBehaviour
     {
         public float growthTime = 0.0f;
         public Texture2D texture = null;
+		public Vector3 scale = Vector3.one;
     }
 
     public float maxGrowthScale = 1.5f;
@@ -49,6 +50,7 @@ public class Plant : MonoBehaviour
                 if(iter.growthTime <= (Timer.Instance.Year + Timer.Instance.ProgressOfYear) - mPlantedTime)
                 {
                     mSprite.sprite = Sprite.Create(iter.texture, new Rect(0, 0, iter.texture.width, iter.texture.height), new Vector2(0.5f, 1.0f));
+					basicScale = iter.scale;
                     states.Remove(iter);
                     break;
                 }
